@@ -159,6 +159,19 @@ CREATE TABLE product_images (
   FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
+CREATE TABLE product_videos (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  product_id  INT NOT NULL,
+  video_url   VARCHAR(500) NOT NULL,   -- link Youtube, Vimeo, hoặc CDN
+  thumbnail   VARCHAR(500) NULL,       -- ảnh preview (optional)
+  title       VARCHAR(255) NULL,
+  position    INT DEFAULT 0,           -- thứ tự hiển thị
+  is_active   BOOLEAN DEFAULT TRUE,
+  created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
 CREATE TABLE sku_images (
   id        INT AUTO_INCREMENT PRIMARY KEY,
   sku_id    INT NOT NULL,
